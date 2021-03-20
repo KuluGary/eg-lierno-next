@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Api from "utils/api";
 import withAuth from 'hocs/withAuth';
 import CharacterTable from "components/CharacterTable/CharacterTable";
+import Layout from "components/Layout/Layout";
 import character_template from "public/json/character_template.json";
 import { DropzoneDialog } from 'material-ui-dropzone';
 import {
@@ -135,7 +136,7 @@ function CharacterList(props) {
         Api.fetchInternal('/characters', {
             method: "POST",
             body: JSON.stringify(newCharacter)
-        })            
+        })
     }
 
     const handleSave = (files) => {
@@ -163,66 +164,68 @@ function CharacterList(props) {
 
     return (
         <>
-            <Slide direction="right" in={true} mountOnEnter unmountOnExit>
-                <Paper variant="outlined">
-                    <DropzoneDialog
-                        open={open}
-                        dropzoneText={'Arrastra un fichero de personaje'}
-                        dialogTitle={'Sube un fichero de personaje'}
-                        cancelButtonText={'Cancelar'}
-                        submitButtonText={'Guardar'}
-                        onSave={handleSave}
-                        acceptedFiles={['application/JSON']}
-                        maxFileSize={5000000}
-                        onClose={handleToggle}
-                    />
-                    <Box style={{ display: "flex", justifyContent: "space-between" }}>
-                        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-                            <Tab label="Mis Personajes" {...a11yProps(0)} />
-                            <Tab label="Personajes de mis Campañas" {...a11yProps(1)} />
-                        </Tabs>
-                        <Box>
-                            <IconButton
-                                onClick={handleToggle}>
-                                <BackupIcon />
-                            </IconButton>
-                            <IconButton
-                                onClick={() => addCharacter()}>
-                                <AddIcon />
-                            </IconButton>
+            <Layout pageTitle="Tus personajes | Lierno App">
+                <Slide direction="right" in={true} mountOnEnter unmountOnExit>
+                    <Paper variant="outlined">
+                        <DropzoneDialog
+                            open={open}
+                            dropzoneText={'Arrastra un fichero de personaje'}
+                            dialogTitle={'Sube un fichero de personaje'}
+                            cancelButtonText={'Cancelar'}
+                            submitButtonText={'Guardar'}
+                            onSave={handleSave}
+                            acceptedFiles={['application/JSON']}
+                            maxFileSize={5000000}
+                            onClose={handleToggle}
+                        />
+                        <Box style={{ display: "flex", justifyContent: "space-between" }}>
+                            <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+                                <Tab label="Mis Personajes" {...a11yProps(0)} />
+                                <Tab label="Personajes de mis Campañas" {...a11yProps(1)} />
+                            </Tabs>
+                            <Box>
+                                <IconButton
+                                    onClick={handleToggle}>
+                                    <BackupIcon />
+                                </IconButton>
+                                <IconButton
+                                    onClick={() => addCharacter()}>
+                                    <AddIcon />
+                                </IconButton>
+                            </Box>
                         </Box>
-                    </Box>
-                    <Divider />
-                    <TabPanel value={value} index={0}>
-                        {characters?.length > 0 &&
-                            <CharacterTable
-                                characters={characters}
-                                page={page}
-                                handleChangePage={handleChangePage}
-                                handleChangeRowsPerPage={handleChangeRowsPerPage}
-                                // history={props.history}
-                                deleteCharacter={deleteCharacter}
-                                rowsPerPage={rowsPerPage}
-                                index={0}
-                                editable />
-                        }
-                    </TabPanel>
-                    <TabPanel value={value} index={1}>
-                        {dmCharacters?.length > 0 &&
-                            <CharacterTable
-                                characters={dmCharacters}
-                                profile={profile}
-                                page={page}
-                                handleChangePage={handleChangePage}
-                                handleChangeRowsPerPage={handleChangeRowsPerPage}
-                                rowsPerPage={rowsPerPage}
-                                history={props.history}
-                                index={1} />
-                        }
-                    </TabPanel>
+                        <Divider />
+                        <TabPanel value={value} index={0}>
+                            {characters?.length > 0 &&
+                                <CharacterTable
+                                    characters={characters}
+                                    page={page}
+                                    handleChangePage={handleChangePage}
+                                    handleChangeRowsPerPage={handleChangeRowsPerPage}
+                                    // history={props.history}
+                                    deleteCharacter={deleteCharacter}
+                                    rowsPerPage={rowsPerPage}
+                                    index={0}
+                                    editable />
+                            }
+                        </TabPanel>
+                        <TabPanel value={value} index={1}>
+                            {dmCharacters?.length > 0 &&
+                                <CharacterTable
+                                    characters={dmCharacters}
+                                    profile={profile}
+                                    page={page}
+                                    handleChangePage={handleChangePage}
+                                    handleChangeRowsPerPage={handleChangeRowsPerPage}
+                                    rowsPerPage={rowsPerPage}
+                                    history={props.history}
+                                    index={1} />
+                            }
+                        </TabPanel>
 
-                </Paper>
-            </Slide>
+                    </Paper>
+                </Slide>
+            </Layout>
         </>
     );
 }

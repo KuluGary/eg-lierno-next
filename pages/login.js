@@ -22,7 +22,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Api from "utils/api"
 import withoutAuth from 'hocs/withoutAuth';
 import { useAuth } from 'providers/Auth';
-
+import Layout from 'components/Layout/Layout';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -89,69 +89,71 @@ export default withoutAuth(function login() {
 
     return (
         <>
-            <Slide direction="up" in={true} mountOnEnter unmountOnExit>
-                <Container component="main" maxWidth="xs">
-                    <CssBaseline />
-                    <div className={classes.paper}>
-                        <Avatar className={classes.avatar}>
-                            <LockOutlinedIcon />
-                        </Avatar>
-                        <Typography component="h1" variant="h5">Entrar</Typography>
-                        <form className={classes.form} noValidate onSubmit={submitHandler}>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                error={errorState && true}
-                                id="email"
-                                label="Nombre de usuario"
-                                name="username"
-                                autoComplete="username"
-                                autoFocus
-                                onChange={(e) => setUserName(e.target.value)}
-                                helperText={errorState && errorState}
-                            />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
-                                error={errorState && true}
-                                name="password"
-                                label="Contraseña"
-                                type={showPassword ? 'text' : 'password'}
-                                id="password"
-                                autoComplete="current-password"
-                                onChange={(e) => setPassWord(e.target.value)}
-                                InputProps={{
-                                    endAdornment: <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="toggle password visibility"
-                                            onClick={() => setShowPassword(!showPassword)}
-                                            edge="end"
-                                        >
-                                            {showPassword ? <Visibility /> : <VisibilityOff />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                }}
-                            />
-                            {/* <Link to="/recover" className={classes.link} variant="span">
+            <Layout pageTitle="Entra a Lierno">
+                <Slide direction="up" in={true} mountOnEnter unmountOnExit>
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <div className={classes.paper}>
+                            <Avatar className={classes.avatar}>
+                                <LockOutlinedIcon />
+                            </Avatar>
+                            <Typography component="h1" variant="h5">Entrar</Typography>
+                            <form className={classes.form} noValidate onSubmit={submitHandler}>
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    error={errorState && true}
+                                    id="email"
+                                    label="Nombre de usuario"
+                                    name="username"
+                                    autoComplete="username"
+                                    autoFocus
+                                    onChange={(e) => setUserName(e.target.value)}
+                                    helperText={errorState && errorState}
+                                />
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    error={errorState && true}
+                                    name="password"
+                                    label="Contraseña"
+                                    type={showPassword ? 'text' : 'password'}
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={(e) => setPassWord(e.target.value)}
+                                    InputProps={{
+                                        endAdornment: <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="toggle password visibility"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <Visibility /> : <VisibilityOff />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }}
+                                />
+                                {/* <Link to="/recover" className={classes.link} variant="span">
                                 {"Recuperar contraseña"}
                             </Link> */}
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                disabled={loading}
-                                className={classes.submit}>
-                                {loading ? <CircularProgress className={classes.progress} size={24} /> : 'Entrar'}
-                            </Button>
-                        </form>
-                    </div>
-                </Container>
-            </Slide>
+                                <Button
+                                    type="submit"
+                                    fullWidth
+                                    variant="contained"
+                                    color="primary"
+                                    disabled={loading}
+                                    className={classes.submit}>
+                                    {loading ? <CircularProgress className={classes.progress} size={24} /> : 'Entrar'}
+                                </Button>
+                            </form>
+                        </div>
+                    </Container>
+                </Slide>
+            </Layout>
         </>
     )
 }, '/characters')

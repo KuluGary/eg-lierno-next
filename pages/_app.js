@@ -95,6 +95,7 @@ class MyApp extends App {
 MyApp.getInitialProps = async appContext => {
   let authenticated = false;
   const request = appContext.ctx.req;
+  const appProps = await App.getInitialProps(appContext);
 
   if (request) {
     request.cookies = cookie.parse(request.headers.cookie || '');
@@ -102,7 +103,10 @@ MyApp.getInitialProps = async appContext => {
   }
 
   const user = await Api.fetchInternal("/auth/passport/user");
-  const appProps = await App.getInitialProps(appContext);
+
+  if (user.status !== 200) {
+    authenticated = false;
+  }
 
   return { ...appProps, authenticated, user: user?.data.id }
 }

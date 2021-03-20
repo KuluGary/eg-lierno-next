@@ -5,6 +5,7 @@ import Header from 'components/Header/Header';
 import { Paper, Typography, Box, Grid, Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import Router from 'next/router'
+import Layout from 'components/Layout/Layout'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     width: "100%",
     display: "flex",
-    justifyContent: "center", 
+    justifyContent: "center",
     paddingRight: "1rem"
   }
 }));
@@ -35,41 +36,43 @@ export default function Home() {
 
   return (
     <>
-      <Paper elevation={3} className={classes.paper}>
-        <Grid container spacing={2}>
-          <Grid item md={6} xs={12}>
-            <Box className={classes.container}>
-              <img className={classes.landingImage} src="/images/landing.svg" />
-            </Box>
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <Box className={classes.container}>
-              <Typography variant="h4">
-                ¡Bienvenido a Lierno App!
-              </Typography>
-              <br />
-              <Typography variant="body1">
-                <strong>Lierno app</strong> es una herramienta web que te permite crear, gestionar y compartir tus personajes y campañas para tus partidas de TTRPGs como Dungeons and Dragons y otros juegos de rol.
-              </Typography>
-              <br />
-              <Typography variant="body1">
-                Si tienes sugerencias o mejoras, no dudes en ponerte en contacto con nosotros a través de <Link to href="mailto:lierno.app@gmail.com?subject=Sugerencia%20Lierno%20App">nuestro email</Link>.
-              </Typography>
-              <br />
-              <br />
-              <Box className={classes.buttonContainer}>
-                <Button
-                  disableElevation
-                  variant="contained"
-                  color="primary"
-                  onClick={() => Router.push("/login")}>
-                  Empieza a usar Lierno App
-              </Button>
+      <Layout pageTitle="Lierno App">
+        <Paper elevation={3} className={classes.paper}>
+          <Grid container spacing={2}>
+            <Grid item md={6} xs={12}>
+              <Box className={classes.container}>
+                <img className={classes.landingImage} src="/images/landing.svg" />
               </Box>
-            </Box>
+            </Grid>
+            <Grid item md={6} xs={12}>
+              <Box className={classes.container}>
+                <Typography variant="h4">
+                  ¡Bienvenido a Lierno App!
+              </Typography>
+                <br />
+                <Typography variant="body1">
+                  <strong>Lierno app</strong> es una herramienta web que te permite crear, gestionar y compartir tus personajes y campañas para tus partidas de TTRPGs como Dungeons and Dragons y otros juegos de rol.
+              </Typography>
+                <br />
+                <Typography variant="body1">
+                  Si tienes sugerencias o mejoras, no dudes en ponerte en contacto con nosotros a través de <Link to href="mailto:lierno.app@gmail.com?subject=Sugerencia%20Lierno%20App">nuestro email</Link>.
+              </Typography>
+                <br />
+                <br />
+                <Box className={classes.buttonContainer}>
+                  <Button
+                    disableElevation
+                    variant="contained"
+                    color="primary"
+                    onClick={() => Router.push("/login")}>
+                    Empieza a usar Lierno App
+              </Button>
+                </Box>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </Layout>
     </>
   )
 }
