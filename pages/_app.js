@@ -108,7 +108,7 @@ MyApp.getInitialProps = async appContext => {
     authenticated = false;
   }
 
-  return { ...appProps, authenticated, user: user?.data.id }
+  return { ...appProps, authenticated, user: user?.data?.id }
 }
 
 export default withStyles(styles, { withTheme: true })(MyApp);
