@@ -102,7 +102,7 @@ MyApp.getInitialProps = async appContext => {
     authenticated = !!request.cookies['connect.sid'];
   }
 
-  const user = await Api.fetchInternal("/auth/passport/user");
+  const user = await Api.fetchInternal("/auth/passport/user").catch(err => authenticated = false)
 
   if (user.status !== 200) {
     authenticated = false;
