@@ -1,65 +1,75 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from "next/link"
+import Api from "utils/api"
+import withAuth from 'hocs/withAuth';
+import Header from 'components/Header/Header';
+import { Paper, Typography, Box, Grid, Button } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import Router from 'next/router'
+
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(12),
+    width: "60vw",
+    margin: "0 auto"
+  },
+  container: {
+    padding: "1rem",
+  },
+  containerDivider: {
+    margin: "3rem 0"
+  },
+  landingImage: {
+    borderRadius: ".5rem",
+    width: "100%"
+  },
+  buttonContainer: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center", 
+    paddingRight: "1rem"
+  }
+}));
 
 export default function Home() {
+  const classes = useStyles();
+
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+    <>
+      <Paper elevation={3} className={classes.paper}>
+        <Grid container spacing={2}>
+          <Grid item md={6} xs={12}>
+            <Box className={classes.container}>
+              <img className={classes.landingImage} src="/images/landing.svg" />
+            </Box>
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <Box className={classes.container}>
+              <Typography variant="h4">
+                ¡Bienvenido a Lierno App!
+              </Typography>
+              <br />
+              <Typography variant="body1">
+                <strong>Lierno app</strong> es una herramienta web que te permite crear, gestionar y compartir tus personajes y campañas para tus partidas de TTRPGs como Dungeons and Dragons y otros juegos de rol.
+              </Typography>
+              <br />
+              <Typography variant="body1">
+                Si tienes sugerencias o mejoras, no dudes en ponerte en contacto con nosotros a través de <Link to href="mailto:lierno.app@gmail.com?subject=Sugerencia%20Lierno%20App">nuestro email</Link>.
+              </Typography>
+              <br />
+              <br />
+              <Box className={classes.buttonContainer}>
+                <Button
+                  disableElevation
+                  variant="contained"
+                  color="primary"
+                  onClick={() => Router.push("/login")}>
+                  Empieza a usar Lierno App
+              </Button>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
+    </>
   )
 }

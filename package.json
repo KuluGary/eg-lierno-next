@@ -8,8 +8,58 @@
     "start": "next start"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.12",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@material-ui/lab": "^4.0.0-alpha.57",
+    "cookie": "^0.4.1",
+    "draft-js": "^0.11.7",
+    "draft-js-export-html": "^1.4.1",
+    "fontsource-roboto": "^4.0.0",
+    "graphql": "^15.5.0",
+    "immutable": "^4.0.0-rc.12",
+    "import": "^0.0.6",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "material-ui-dropzone": "^3.5.0",
     "next": "10.0.9",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "react-toastify": "^7.0.3",
+    "swr": "^0.5.3"
+  },
+  "devDependencies": {},
+  "importSort": {
+    ".js, .jsx": {
+      "parser": "babylon",
+      "style": "eslint",
+      "options": {
+        "sort-imports": [
+          "error",
+          {
+            "groups": [
+              "builtin",
+              "external",
+              "internal"
+            ],
+            "pathGroups": [
+              {
+                "pattern": "react",
+                "group": "external",
+                "position": "before"
+              }
+            ],
+            "pathGroupsExcludedImportTypes": [
+              "react"
+            ],
+            "newlines-between": "always",
+            "alphabetize": {
+              "order": "asc",
+              "caseInsensitive": true
+            }
+          }
+        ]
+      }
+    }
   }
 }
