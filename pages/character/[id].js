@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import _ from "lodash";
 import Api from "utils/api";
@@ -225,7 +225,8 @@ function CharacterProfile({ character, ...props }) {
 }
 
 CharacterProfile.getInitialProps = async ctx => {
-    const response = await Api.fetchInternal('/characters/' + ctx.query?.id);
+    const url = `${process.env.NEXT_PUBLIC_ENDPOINT}v1/characters/${ctx.query?.id}`;
+    const response = await fetch(url);
     const character = response.data?.payload;
 
     return { character };

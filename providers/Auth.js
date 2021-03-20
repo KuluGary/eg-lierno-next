@@ -20,7 +20,6 @@ export const AuthProvider = ({ children, authenticated, user }) => {
                 userId,
                 setUser
             }}>
-                {/* <Header/> */}
                 {children}
         </AuthContext.Provider>
     )

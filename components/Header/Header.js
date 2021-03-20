@@ -79,8 +79,9 @@ function Header(props) {
         Api.fetchInternal("/auth/passport/logout")
             .then(() => {
                 setAnchorEl(null);
-                fetch('/api/logout')
-                    .then(() => setAuthenticated(false))
+                setAuthenticated(false);
+                // fetch('/api/logout')
+                //     .then(() => setAuthenticated(false))
             })
     }
 

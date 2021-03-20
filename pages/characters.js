@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Api from "utils/api";
 import withAuth from 'hocs/withAuth';
 import CharacterTable from "components/CharacterTable/CharacterTable";
@@ -229,55 +229,6 @@ function CharacterList(props) {
         </>
     );
 }
-
-// CharacterList.getInitialProps = async appContext => {
-//     console.log(process.env.NEXT_PUBLIC_ENDPOINT + "v2/graphql")
-//     const client = new ApolloClient({
-//         uri: process.env.NEXT_PUBLIC_ENDPOINT + "v2" ,
-//         cache: new InMemoryCache()
-//     });
-
-//     const { data } = await client.query({
-//         query: gql`
-//              query ($qs: [String]) {
-//                  getCurrentCharacters(qs: $qs) {
-//                      _id
-//                      flavor {
-//                          traits {
-//                              name
-//                          }
-//                          portrait
-//                      }
-//                  }
-//              }
-//          `,
-//          variables: { qs: JSON.stringify({}) }
-//     })
-
-//     console.log(data);
-//     return {}
-//     // const query = gql`
-//     //     query {
-//     //         getUserCharacters {
-//     //             _id
-//     //             flavor {
-//     //                 traits {
-//     //                     name
-//     //                 }
-//     //                 portrait
-//     //             }
-//     //         }
-//     //     }
-//     // `
-
-//     // const { data, loading, error } = useQuery(query);
-
-//     // if (!loading) {
-//     //     res.status(200).json({ data })
-//     // } else {
-//     //     res.status(400).json({ error })
-//     // }
-// }
 
 
 export default withAuth(CharacterList);
